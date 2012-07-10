@@ -1,0 +1,27 @@
+name = "VTMigrate"
+description = "Vragentrommel migrate."
+package = "0Development"
+core = 7.x
+dependencies[] = taxonomy
+dependencies[] = image
+dependencies[] = comment
+dependencies[] = migrate
+dependencies[] = list
+dependencies[] = number
+dependencies[] = references
+dependencies[] = pathauto
+
+;node_reference is useful but not required
+;dependencies[] = node_reference
+
+files[] = vtmigrate.module
+files[] = HoofdstukkenMigration.inc
+files[] = VragenMigration.inc
+files[] = UserMigration.inc
+files[] = UserRoleMigration.inc
+files[] = QuestionMigration.inc
+;files[] = wine.inc
+
+; For testing table_copy plugin. Since is infrequently used, we comment it out.
+; files[] = example.table_copy.inc
+

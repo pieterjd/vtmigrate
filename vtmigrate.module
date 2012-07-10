@@ -1,0 +1,85 @@
+<?php
+
+/*
+ * You must implement hook_migrate_api(), setting the API level to 2, for
+ * your migration classes to be recognized by the Migrate module.
+ */
+function vtmigrate_migrate_api() {
+  $api = array(
+    'api' => 2,
+  );
+  return $api;
+}
+
+/**
+* helper function
+eg. vtmigrate_get_term(array('a','b'),2,7)
+will return the term id of the term b if the following situation holds:
+term with id 7 from voc 2
+|_ a
+   |_ b
+*
+*/
+
+function vtmigrate_get_term($term_array,$parent_id=0){
+	$result = NULL;
+	if(count($term_array) == 1){
+		//trivial case
+		/*
+		$current_terms = array_values(taxonomy_get_term_by_name($term_array[0]));
+		if($current_terms != null){
+			$current_term = $current_terms[0];
+			$parent_term = taxonomy_term_load($parent_id);
+			$parents = taxonomy_get_parents($current_term->tid);
+			
+			foreach($parents as $p){
+				if($p->tid == $parent_term->tid){
+					//everything is ok
+					//change result
+					$result = $current_term;
+	
+				}
+			}
+		}
+		*/
+		//trivial case
+		$tree = taxonomy_get_tree(6,$parent_id,1);
+		foreach($tree as $index => $term){
+			if(strcmp($term->name,$term_array[0]) == 0){
+				//found it
+				//dsm("found it");
+				$result = $term;
+			}
+		}
+
+	}
+	else{
+		//recursive case
+		//first element of $term_array will be the parent parameter of the recursive call
+		$terms = array_values(taxonomy_get_term_by_name($term_array[0]));
+		$first_term = $terms[0];
+		//remove first element of $term_array
+		unset($term_array[0]);
+		//recursive call
+		//call to array_values is required, so element at position 1 moves to position 0
+		$result = vtmigrate_get_term(array_values($term_array),$first_term->tid);
+		
+		
+	}
+	return $result;
+}
+
+function vtmigrate_get_chapter_term($course,$year,$chapter_id,$parent_id=0){
+$result = NULL;
+//drupal_set_message(print_r($course,true),'warning');
+//drupal_set_message(print_r($year,true),'warning');
+//drupal_set_message(print_r("chapter:".$chapter_id,true),'warning');
+	$tree = taxonomy_get_tree(6,$parent_id);
+	foreach($tree as $term){
+		if($term->weight == $chapter_id){
+			//gevonden
+			$result = $term;
+		}
+	}
+	return $result;
+}

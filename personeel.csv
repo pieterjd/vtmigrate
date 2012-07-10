@@ -1,0 +1,62 @@
+name;unr;email;course;monitor;id;roles
+Yvette.Vanberghen; u005009;Yvette.Vanberghen@cs.kuleuven.be;numwis-bur;0;63;numwis-bur
+Jan Demuynck;e0005943;jandemuynckarchitecten@gmail.com;ontw;0;84;ontw
+Kulikowski;Eryk;Eryk.Kulikowski@cs.kuleuven.be;inf1;0;61;inf1
+Lutgarde Beernaert;u0000184;Lutgarde.Beernaert@cs.kuleuven.be;wiskanal;;86;wiskanal,analyse
+Hilde Vanaenroyde;u0002156;Hilde.Vanaenroyde@mirw.kuleuven.be;ontw;0;72;ontw,hwis,Aalgebra,wiskanal
+Marc Van Barel;u0002634;Marc.Vanbarel@cs.kuleuven.be;numwis-ind;0;25;numwis-ind,numwis-wet
+Walter Lauriks;u0002686;Walter.Lauriks@fys.kuleuven.be;nat;0;30;nat
+Hans Verplancke;u0004313;Hans.Verplancke@asro.kuleuven.be;ontw;0;70;ontw
+Ignace Verpoest;u0004333;Ignace.Verpoest@mtm.kuleuven.be;materiaalk;0;36;materiaalk
+Tine Baelmans;u0004531;Martine.Baelmans@mech.kuleuven.be;thermo;0;37;thermo
+Jeroen Dehaene;u0006058;Jeroen.Dehaene@mirw.kuleuven.be;analyse;0;64;analyse,Aalgebra,algebra,nat,thermo
+Dirk Roose;u0006989;Dirk.Roose@cs.kuleuven.be;numwis-bur;0;79;numwis-bur
+Bart Blanpain;u0008023;Bart.Blanpain@mtm.kuleuven.be;materiaalk;0;40;materiaalk
+Nico Scheerlinck;u0008782;Nico.Scheerlinck@cs.kuleuven.be;hwis2;0;57;hwis2
+Joos Vandewalle;u0009485;Joos.Vandewalle@esat.kuleuven.be;tdalgebra;0;52;tdalgebra,algebra
+Stefan Vandewalle;u0009501;Stefan.Vandewalle@cs.kuleuven.be;analyse;0;68;analyse
+Karl Meerbergen;u0009717;Karl.Meerbergen@cs.kuleuven.be;numwis-bur;0;5;numwis-bur
+Antoon Bosselaers;u0009850;Antoon.Bosselaers@esat.kuleuven.be;tdalgebra;0;51;tdalgebra,algebra
+Karel Wouters;u0010192;Karel.Wouters@esat.kuleuven.be;algebra;0;17;algebra,tdalgebra
+Mieke Branders;u0010678;Mieke.Branders@mirw.kuleuven.be;analyse;0;3;analyse,1ebach
+Wim Michiels;u0011378;Wim.Michiels@cs.kuleuven.be;numwis-ind;0;27;numwis-ind,numwis-wet
+Patrick Vangucht;u0011434;Patrick.Vangucht@cs.kuleuven.be;numwis-bur;0;28;numwis-bur
+Adhemar Bultheel;u0012263;Adhemar.Bultheel@cs.kuleuven.be;Aalgebra;0;77;Aalgebra,hwis
+Bert Verlinden;u0012525;Bert.Verlinden@mtm.kuleuven.be;materiaalk;0;35;materiaalk
+Paul Dierckx;u0014872;Paul.Dierckx@cs.kuleuven.be;hwis2;0;55;hwis2,analyse2,analyse
+Philip Dutré;u0016791;Philip.Dutre@cs.kuleuven.be;inf1;0;43;inf1
+Stefan Boeykens;u0020470;Stefan.Boeykens@asro.kuleuven.be;ontw;;71;ontw
+Peter Tom Jones;u0025315;Peter.Jones@mtm.kuleuven.be;thermo;0;29;thermo
+Tom Louwette;u0025861;tomlouwette@gmail.com;ontw;0;67;ontw
+Koen Verheyden;u0029788;Koen.Verheyden@cs.kuleuven.be;numwis-bur;0;62;numwis-bur
+Tim Volodine;u0030729;Tim.Volodine@cs.kuleuven.be;numwis-bur;0;33;numwis-bur
+Riet Callens;u0031968;riet.callens@mirw.kuleuven.be;hwis;0;66;hwis,analyse,thermo,mech,wiskanal,algnat,elecnet,nat
+Christel Heylen;u0034834;Christel.Heylen@mirw.kuleuven.be;mech;0;16;mech,materiaalk
+Dirk Nuyens;u0038396;Dirk.Nuyens@cs.kuleuven.be;numwis-bur;0;32;numwis-bur
+Yves Vandewoude;u0038687;Yves.Vandewoude@cs.kuleuven.be;inf1;0;38;inf1
+Tom Van Mieghem;u0040349;tom.van.mieghem@skynet.be;ontw;0;56;ontw
+Dries Smeets;u0040918;Dries.Smeets@fys.kuleuven.be;nat;0;44;nat
+Joe Lano;u0041082;Joseph.Lano@esat.kuleuven.be;tdalgebra;0;15;tdalgebra,tdalgebra
+Frederik Verhaeghe;u0043528;Frederik.Verhaeghe@mtm.kuleuven.be;thermo;0;46;thermo
+Katja Malfliet;u0043666;Katja.Malfliet@asro.kuleuven.be;inf1;0;58;inf1
+Nele Vermeulen;u0043795;nele.vermeulen@cs.kuleuven.be;analyse;0;12;analyse,mech
+Bart Verleye;u0043922;Bart.Verleye@cs.kuleuven.be;numwis-wet;0;9;numwis-wet
+Jozefien Goossens;u0043954;jozefien.goossens@fys.kuleuven.be;nat;;89;nat
+Pieter-Jan Drouillon;u0044914;Pieter-Jan.Drouillon@mirw.kuleuven.be;inf1;0;41;inf1,stat
+Sheron Shamuilia;u0047006;Sheron.Shamuilia@fys.kuleuven.be;nat;0;45;nat
+Joris Baets;u0047090;joris.baets@mtm.kuleuven.be;materiaalk;0;74;materiaalk
+Thomas Delaet;u0047298;Thomas.Delaet@cs.kuleuven.be;inf1;0;42;inf1
+Stefan Decoster;u0047436;Stefan.Decoster@fys.kuleuven.be;nat;0;49;nat
+Leentje Verfaillie;u0047590;Leentje.Verfaillie@asro.kuleuven.be;inf1;0;59;inf1
+Frederik Rogiers;u0049458;Frederik.Rogiers@mech.kuleuven.be;thermo;0;47;thermo
+Yves Frederix;u0050015;Yves.Frederix@cs.kuleuven.be;numwis-bur;0;10;numwis-bur
+Sam Corveleyn;u0050435;Samuel.Corveleyn@cs.kuleuven.be;hwis2;0;8;hwis2
+Bart Sarens;u0053140;Bart.Sarens@fys.kuleuven.be;nat;0;65;nat
+Pieter Schevenels;u0053804;Pieter.Schevenels@bwk.kuleuven.be;nat;0;31;nat
+Laura Tamassia;u0053887;laura.tamassia@fys.kuleuven.be;nat;;88;nat
+Tom Saenen;u0055845;Tom.Saenen@mech.kuleuven.be;thermo;0;50;thermo
+Geert De Neuter;u0060815;g.deneuter@g-o-a.be;ontw;0;22;ontw
+Liesbeth Storkebaum;u0060817;liesbeth.storkebaum@b-architecten.be;ontw;0;83;ontw
+Ghislain Lams;u0060818;ghislain.lams@skynet.be;ontw;0;75;ontw
+Jeroen Tacq;u0072420;jeroen.tacq@mtm.kuleuven.be;materiaalk;0;73;materiaalk
+Lennart Scheunis;u0072872;lennart.scheunis@mtm.kuleuven.be;materiaalk;0;2;materiaalk
