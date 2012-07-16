@@ -213,22 +213,31 @@ class  AllChapterInOneMigration extends HoofdstukkenMigration{
 				);
 				taxonomy_term_save($year_term);
 		}
-		
-		
-		$part_term = vtmigrate_get_term(array($row->parttitle),$year_term->tid);
-		if(is_null($part_term) and strcmp($row->parttitle,'') != 0){
-			//create part term if not present yet and not equal to empty string
-			$part_term = (object) array(
-					'vid' => 6,
-					'name' => $row->parttitle,
-					'parent' => $year_term->tid,
-				);
-			
-			taxonomy_term_save($part_term);
-			//drupal_set_message('partterm created: '.print_r($part_term,true),'warning');
+		//checken op of er een part is
+		if(strlen($row->parttitle)>3){
+			//er is een part, checken of het al gemaakt is
+			$part_term = vtmigrate_get_term(array($row->parttitle),$year_term->tid);
+			if(is_null($part_term) and strcmp($row->parttitle,'') != 0 and strlen($row->parttitle)>4){
+				//create part term if not present yet and not equal to empty string and long enough
+				$part_term = (object) array(
+						'vid' => 6,
+						'name' => $row->parttitle,
+						'parent' => $year_term->tid,
+					);
+				
+				taxonomy_term_save($part_term);
+				//drupal_set_message('partterm created: '.print_r($part_term,true),'warning');
+			}
+			//en de part als parent zetten
+			$term->parent = $part_term->tid;
 		}
+		else{
+			//er is geen part dus jaar is de parent
+			$term->parent = $year_term->tid;
+		}
+		
 		//term contains the term representing the chapter title
-		$term->parent = $part_term->tid;
+		
 		
 		
   
