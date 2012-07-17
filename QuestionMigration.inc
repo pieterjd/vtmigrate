@@ -92,10 +92,21 @@ class QuestionMigration extends Migration {
     //maar in de prepareRow function gaan wie die overriden met de juiste URI van de files die bij deze vraag horen
     //check drupal.org/node/1069620
     ////arguments for file handling
+    /*
     $file_arguments = MigrateFileFieldHandler::arguments($preserve_files = TRUE);
-    $this->addFieldMapping('field_attachments','files')
+    $this->addFieldMapping('field_attachments')
 		     	->separator('#')
     			->arguments($file_arguments);
+    */
+    //aanpassingen volgens btmash.com/article/2011-03-25/migrating-content-part-2-nodes
+    //no source dir, copy the files, and rename it when file already exists
+    //$file_arguments = MigrateFileFieldHandler::arguments(NULL, 'file_copy', FILE_EXISTS_RENAME);
+    //^^file arguments are obsolete^^
+    //do it like on acquia.com blog post
+    //add mapping
+    $this->addFieldMapping('field_attachments','files');
+		
+				
      //skip these source fields
     $this->addUnmigratedSources(
     	array(
@@ -171,7 +182,7 @@ class QuestionMigration extends Migration {
  		
  		//handling files
  		//enkel antwoord kan files bevatten. Er wordt verwezen naar files via a tags 		
- 		$nr_matches = preg_match_all('/<a href="(\S+)"/',$row->answer,$matches,PREG_SET_ORDER);
+ 		$nr_matches = preg_match_all('/<a href="(\S+)"/i',$row->answer,$matches,PREG_SET_ORDER);
  		//drupal_set_message("#match: ".print_r($nr_matches,true),'warning');
  		if($nr_matches > 0){
  			//drupal_set_message("#match: ".print_r($matches,true),'warning');
@@ -180,17 +191,26 @@ class QuestionMigration extends Migration {
 			//all matches are stored in an array at $matches[0]
 
 			foreach($matches as $match){
+ 				/*
  				$file_url = $base_url . $match[1];
-				$files[] = $file_url;
+ 				//according btmash.com blogpost
+ 				$current_file_data = array(
+ 					'path' => $file_url,
+ 				);
+ 				*/
+				$files[] = $base_url .$match[1];
  			}
-			//files are separated by hashtag # (cf field mapping in constructor)
-			//override sourcefield
-			$row->files = implode('#',$files);
-			if(count($files)>0){
-				//drupal_set_message("Files attached".print_r($files,true),'warning');
-			}
+ 			$row->files = implode('#',$files);
+ 			drupal_set_message(print_r($row,true),'error');
+		
+			
 		}
-		drupal_set_message(print_r($row,true),'warning');
+		else{
+			drupal_set_message('No attachments to migrate','warning');
+			$row->files = '';
+		
+		}
+		
 		
 		return TRUE;
  		
