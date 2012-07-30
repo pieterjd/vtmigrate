@@ -43,7 +43,9 @@ function vtmigrate_get_term($term_array,$parent_id=0){
 		}
 		*/
 		//trivial case
-		$tree = taxonomy_get_tree(6,$parent_id,1);
+		//get vocabulary
+		$voc = taxonomy_vocabulary_machine_name_load('chapters');
+		$tree = taxonomy_get_tree($voc->vid,$parent_id,1);
 		foreach($tree as $index => $term){
 			if(strcmp($term->name,$term_array[0]) == 0){
 				//found it
@@ -74,7 +76,9 @@ $result = NULL;
 //drupal_set_message(print_r($course,true),'warning');
 //drupal_set_message(print_r($year,true),'warning');
 //drupal_set_message(print_r("chapter:".$chapter_id,true),'warning');
-	$tree = taxonomy_get_tree(6,$parent_id);
+	//get vocabulary
+	$voc = taxonomy_vocabulary_machine_name_load('chapters');	
+	$tree = taxonomy_get_tree($voc->vid,$parent_id);
 	foreach($tree as $term){
 		if($term->weight == $chapter_id){
 			//gevonden
