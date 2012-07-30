@@ -273,7 +273,7 @@ class QuestionMigration extends Migration {
 		//add the uid of the user asking the question
 		
 		//check username is of format u\d{7}
-		if(preg_match('/[mrs]\d{7}/',$row->mnr) == 1){
+		if(preg_match('/[mrsu]\d{7}/',$row->mnr) == 1){
 			//valid username, lookup user
 			$user = user_load_by_name($row->mnr);
 			if($user == FALSE){
@@ -290,7 +290,7 @@ class QuestionMigration extends Migration {
 		//add the uid of the responder
 		$question->field_responder['und'] = array();
 		//check username is of format u\d{7}
-		if(preg_match('/u\d{7}/',$row->responder) == 1){
+		if(preg_match('/[mrsu]\d{7}/',$row->responder) == 1){
 			//valid username, lookup user
 			$user = user_load_by_name($row->responder);
 			if($user != FALSE){
