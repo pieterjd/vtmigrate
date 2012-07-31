@@ -10,6 +10,7 @@ dependencies[] = list
 dependencies[] = number
 dependencies[] = references
 dependencies[] = pathauto
+dependencies[] = vragentrommel
 
 ;node_reference is useful but not required
 ;dependencies[] = node_reference
