@@ -78,6 +78,7 @@ $result = NULL;
 //drupal_set_message(print_r("chapter:".$chapter_id,true),'warning');
 	//get vocabulary
 	$voc = taxonomy_vocabulary_machine_name_load('chapters');	
+	drupal_set_message(print_r($voc,true),'warning');
 	$tree = taxonomy_get_tree($voc->vid,$parent_id);
 	foreach($tree as $term){
 		if($term->weight == $chapter_id){

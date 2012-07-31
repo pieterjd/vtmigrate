@@ -181,6 +181,8 @@ class  AllChapterInOneMigration extends HoofdstukkenMigration{
   }
   //it is executing before saving migrated object to the destination
   public function prepare($term,stdClass $row){
+  	//retrieve the vocabulary
+  	$voc = taxonomy_vocabulary_machine_name_load('chapters');
   	//create all parents
 		//term contains the term representing the chapter title
 		
@@ -189,7 +191,7 @@ class  AllChapterInOneMigration extends HoofdstukkenMigration{
 		if(empty($course_term)){
 			//course doesn't exist yet, let's create it
 			$course_term = (object) array(
-					'vid' => 6,
+					'vid' => $voc->vid,
 					'name' => $row->course,
 			);
 			
@@ -207,7 +209,7 @@ class  AllChapterInOneMigration extends HoofdstukkenMigration{
 		if(is_null($year_term)){
 			//create year term
 			$year_term = (object) array(
-					'vid' => 6,
+					'vid' => $voc->vid,
 					'name' => $row->year,
 					'parent' => $course_term->tid,
 				);
@@ -220,7 +222,7 @@ class  AllChapterInOneMigration extends HoofdstukkenMigration{
 			if(is_null($part_term) and strcmp($row->parttitle,'') != 0 and strlen($row->parttitle)>4){
 				//create part term if not present yet and not equal to empty string and long enough
 				$part_term = (object) array(
-						'vid' => 6,
+						'vid' => $voc->vid,
 						'name' => $row->parttitle,
 						'parent' => $year_term->tid,
 					);
