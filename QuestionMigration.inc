@@ -163,8 +163,9 @@ class QuestionMigration extends Migration {
 		$date = $parts[1].'-'.$parts[2].' '.$row->year;
 		$timestamp = strtotime($date);
 		//soms is het jaar niet goed bv een vraag van 23 mei 2007 bij de vragentrommel van 2007;. Kan niet want die vraag werd gesteld in 2008
-		//get the month of timestamp. If bigger than 1 then add a year
-		if(date('n',$timestamp) >= 1){
+		//dus maanden jan, feb, ... september horen bij  vragentrommel 2007, maar werden in het jaar 2008 gesteld
+		//get the month of timestamp. If smaller than 9 then add a year
+		if(date('n',$timestamp) <= 9){
 			$timestamp = strtotime('+1 year',$timestamp);
 		}
 		//now the time
