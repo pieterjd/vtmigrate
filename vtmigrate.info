@@ -1,6 +1,6 @@
 name = "VTMigrate"
 description = "Vragentrommel migrate."
-package = "0Development"
+package = "Migration"
 core = 7.x
 dependencies[] = taxonomy
 dependencies[] = image

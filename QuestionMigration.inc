@@ -148,6 +148,7 @@ class QuestionMigration extends Migration {
     		'promote',
     		'sticky',
     		'is_new',
+    		'field_state',
     	)
     );
     
