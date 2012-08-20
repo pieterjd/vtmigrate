@@ -75,8 +75,18 @@ class QuestionMigration extends Migration {
     //$this->addFieldMapping('sticky')->defaultValue(0);
     //$this->addFieldMapping('is_new')->defaultValue(0);
     $this->addFieldMapping('title','title');
-    $this->addFieldMapping('body','question');
-    $this->addFieldMapping('field_answer','answer');
+    $this->addFieldMapping('body','question')
+    	->arguments(
+    		array(
+    			'format' => 'full_html',
+    		)
+    	);
+    $this->addFieldMapping('field_answer','answer')
+    	->arguments(
+    		array(
+    			'format' => 'full_html',
+    		)
+    	);
     $this->addFieldMapping('created','date');
     $this->addFieldMapping('field_course_term','course');
     //$this->addFieldMapping('field_responder','responder')
@@ -104,7 +114,13 @@ class QuestionMigration extends Migration {
     //^^file arguments are obsolete^^
     //do it like on acquia.com blog post
     //add mapping
-    $this->addFieldMapping('field_attachments','files');
+    $this->addFieldMapping('field_attachments','files')
+    	->separator('#');
+    $this->addFieldMapping('field_images','images')
+    	->separator('#');
+    //all imported question are answered
+     $this->addFieldMapping('field_state')
+     			->defaultValue('answered');
 		
 				
      //skip these source fields
@@ -117,7 +133,7 @@ class QuestionMigration extends Migration {
     		'stars',
     		'time',
     		'busy',
-    		'images',
+    		//'images',
     		//'files',
     		'course',
     		'chapter',
@@ -148,7 +164,7 @@ class QuestionMigration extends Migration {
     		'promote',
     		'sticky',
     		'is_new',
-    		'field_state',
+    		//'field_state',
     	)
     );
     
@@ -189,7 +205,7 @@ class QuestionMigration extends Migration {
  		$nr_matches = preg_match_all('/<a href="(\S+)"/i',$row->answer,$matches,PREG_SET_ORDER);
  		//drupal_set_message("#match: ".print_r($nr_matches,true),'warning');
  		if($nr_matches > 0){
- 			//drupal_set_message("#match: ".print_r($matches,true),'warning');
+ 			drupal_set_message("#filematch: ".print_r($matches,true),'warning');
 			
 			$base_url = 'https://mirw.kuleuven.be/vragentrommel/trommelroot/';
 			//all matches are stored in an array at $matches[0]
@@ -209,12 +225,16 @@ class QuestionMigration extends Migration {
 		
 			
 		}
+		
+		//add the files to $row->images
+		$row->files = implode('#',$files);
 		//checking for images
 		//handling the images
+		$images = array();
 		$nr_matches = preg_match_all('/<img src=([^\s\>]+)\>/i',$row->answer,$matches,PREG_SET_ORDER);
  		//drupal_set_message("#match: ".print_r($nr_matches,true),'warning');
  		if($nr_matches > 0){
- 			//drupal_set_message("#match: ".print_r($matches,true),'warning');
+ 			drupal_set_message("#image match: ".print_r($matches,true),'warning');
 			$base_url = 'https://mirw.kuleuven.be/vragentrommel/trommelroot/';
 			//all matches are stored in an array at $matches[0]
 
@@ -227,21 +247,24 @@ class QuestionMigration extends Migration {
  					'path' => $file_url,
  				);
  				*/
-				$files[] = $file_url;
-				drupal_set_message($file_url,'error');
+				$images[] = $file_url;
+				//drupal_set_message($file_url,'error');
  			}
  			
- 			//drupal_set_message(print_r($row,true),'error');
+ 			
 		
 			
 		}
-		//add the files to $row->files
-		$row->files = implode('#',$files);
-		
+		//add the files to $row->images
+		$row->images = implode('#',$images);
+		drupal_set_message(print_r($files,true),'error');
+		drupal_set_message(print_r($images,true),'error');
 		if(count($files)>1){
-			drupal_set_message('More than 1 attachment!!!','error');
+			drupal_set_message('More than 1 file!!!','error');
 		}
-		
+		if(count($images)>1){
+			drupal_set_message('More than 1 image!!!','error');
+		}
 		return TRUE;
  		
   }
@@ -250,11 +273,12 @@ class QuestionMigration extends Migration {
 	//it is executing before saving migrated object to the destination
   public function prepare($question,stdClass $row){
   	//setting question and answer filterformat to filtered_html
-  	$question->body['und'][0]['value_format'] = 'filtered_html';
-  	$question->body['und'][0]['format'] = 'filtered_html';
+  	//changed: is set in constructor
+  	//$question->body['und'][0]['value_format'] = 'filtered_html';
+  	//$question->body['und'][0]['format'] = 'filtered_html';
   	
-  	$question->field_answer['und'][0]['value_format'] = 'filtered_html';
-  	$question->field_answer['und'][0]['format'] = 'filtered_html';
+  	//$question->field_answer['und'][0]['value_format'] = 'filtered_html';
+  	//$question->field_answer['und'][0]['format'] = 'filtered_html';
   	
   	
   	//setting the field_course_term with the right term

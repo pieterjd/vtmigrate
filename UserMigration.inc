@@ -97,7 +97,7 @@ class UserMigration extends Migration {
     );
     
     //add dependency
-    $this->dependencies = array('UserRole');
+    //$this->dependencies = array('UserRole');
     
 	}
 
@@ -106,13 +106,20 @@ class UserMigration extends Migration {
   	//add all the role ids to the user account
   	$role_names = explode(',',$row->roles);
   	
-  	$role_ids = array();
-  	foreach($role_names as $index => $role_name){
-  		$role = user_role_load_by_name($role_name);
-  		//$user role is a mapping from role id to role name
-  		$user->roles[$role->rid] = $role_name;
+  	//check if role didactisch team bestaat
+  	$new_role = array('didactisch team');
+  	foreach($new_role as $r){
+  		if(!user_role_load_by_name($r)){
+  			//create it
+  			$role = new stdClass();
+  			$role->name = $r;
+  			user_role_save($role);
+  		}
   	}
-  	drupal_set_message(print_r($user,true),'warning');
+  	$role = user_role_load_by_name('didactisch team');
+ 		//$user role is a mapping from role id to role name
+ 		$user->roles[$role->rid] = $role->name;
+  	//drupal_set_message(print_r($user,true),'warning');
   	//set the roles
   	//$user->roles = $role_ids;
   }
