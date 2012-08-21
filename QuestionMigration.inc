@@ -169,7 +169,7 @@ class QuestionMigration extends Migration {
     );
     
     //add dependency
-    $this->dependencies = array('UserRole','AllChapterInOne');
+    $this->dependencies = array('AllChapterInOne');
     
 	}
 	public function convertDateToTimestamp($d,$t,$row){
