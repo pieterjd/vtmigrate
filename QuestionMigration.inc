@@ -120,7 +120,11 @@ class QuestionMigration extends Migration {
     	->separator('#');
     //all imported question are answered
      $this->addFieldMapping('field_state')
-     			->defaultValue('answered');
+     			->defaultValue('Answered');
+     //turn of promote
+     $this->addFieldMapping('promote')
+     			->defaultValue(0);
+    
 		
 				
      //skip these source fields
@@ -161,7 +165,7 @@ class QuestionMigration extends Migration {
     		//'field_answer',
     		'field_responder',
     		'uid',
-    		'promote',
+    		//'promote',
     		'sticky',
     		'is_new',
     		//'field_state',
